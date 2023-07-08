@@ -1142,7 +1142,7 @@ class __FPanel2State extends State<_FPanel2> {
                     ),
                   ),
                   child: Icon(
-                    Icons.camera_alt,
+                    Icons.camera_alt_rounded,
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
@@ -1170,11 +1170,11 @@ class __FPanel2State extends State<_FPanel2> {
                 child: Visibility(
                   visible: lock,
                   replacement: Icon(
-                    Icons.lock_open,
+                    Icons.lock_open_rounded,
                     color: Theme.of(context).primaryColor,
                   ),
                   child: Icon(
-                    Icons.lock,
+                    Icons.lock_outline_rounded,
                     color: Theme.of(context).primaryColor,
                   ),
                 ),
@@ -1467,7 +1467,7 @@ class __FPanel2State extends State<_FPanel2> {
     return IconButton(
       padding: EdgeInsets.zero,
       icon: Icon(
-        Icons.arrow_back_ios_rounded,
+        Icons.arrow_back_rounded,
         color: Theme.of(context).primaryColor,
       ),
       onPressed: () {
@@ -1621,7 +1621,7 @@ class __FPanel2State extends State<_FPanel2> {
         angle: pi / 2,
         alignment: Alignment.center,
         child: Icon(
-          Icons.tune_rounded,
+          Icons.settings_rounded,
           color: Theme.of(context).primaryColor,
         ),
       ),
