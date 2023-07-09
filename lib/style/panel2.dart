@@ -635,12 +635,12 @@ class __FPanel2State extends State<_FPanel2> {
   // 播放与暂停图标
   Widget buildPlayButton(BuildContext context, double height) {
     Widget icon = (player.state == FState.started)
-        ? Icon(Icons.pause_rounded, color: Theme.of(context).primaryColor)
-        : Icon(Icons.play_arrow_rounded, color: Theme.of(context).primaryColor);
+        ? Icon(Icons.pause_rounded, color: Colors.white)
+        : Icon(Icons.play_arrow_rounded, color: Colors.white);
     bool fullScreen = player.value.fullScreen;
     return IconButton(
       padding: EdgeInsets.zero,
-      iconSize: fullScreen ? height : height * 0.8,
+      iconSize: fullScreen ? height * 0.8 : height * 0.8,
       icon: icon,
       onPressed: playOrPause,
     );
@@ -654,7 +654,7 @@ class __FPanel2State extends State<_FPanel2> {
       iconSize: fullScreen ? height : height * 0.8,
       icon: Icon(
         Icons.skip_next_rounded,
-        color: Theme.of(context).primaryColor,
+        color: Colors.white,
       ),
       onPressed: playNextVideo,
     );
@@ -678,9 +678,9 @@ class __FPanel2State extends State<_FPanel2> {
             },
             child: Text(
               '字幕',
-              style: TextStyle(
-                color: Theme.of(context).primaryColorDark,
-              ),
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: Colors.white,
+                  ),
             ),
           ),
         TextButton(
@@ -696,28 +696,30 @@ class __FPanel2State extends State<_FPanel2> {
             });
           },
           child: Text(
-            '倍速',
-            style: TextStyle(
-              color: Theme.of(context).primaryColorDark,
-            ),
+            '${speed}x',
+            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                  color: Colors.white,
+                ),
           ),
         ),
         if (widget.isResolution)
           TextButton(
             onPressed: () {
-              if (hideCaption == false) {
-                hideCaption = true;
-              }
-              if (hideSpeed == false) {
-                hideSpeed = true;
-              }
-              hideResolution = !hideResolution;
+              setState(() {
+                if (hideCaption == false) {
+                  hideCaption = true;
+                }
+                if (hideSpeed == false) {
+                  hideSpeed = true;
+                }
+                hideResolution = !hideResolution;
+              });
             },
             child: Text(
-              '${resolution}P',
-              style: TextStyle(
-                color: Theme.of(context).primaryColorDark,
-              ),
+              '${resolution}p',
+              style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                    color: Colors.white,
+                  ),
             ),
           ),
       ],
@@ -747,9 +749,9 @@ class __FPanel2State extends State<_FPanel2> {
                 mapKey,
                 style: TextStyle(
                   color: caption == captionVals
-                      ? Theme.of(context).primaryColor
-                      : Colors.white,
-                  fontSize: 16,
+                      ? Colors.white
+                      : Colors.white.withOpacity(0.6),
+                  fontSize: 14,
                 ),
               ),
             ),
@@ -795,9 +797,9 @@ class __FPanel2State extends State<_FPanel2> {
                 "${mapKey}X",
                 style: TextStyle(
                   color: speed == speedVals
-                      ? Theme.of(context).primaryColor
-                      : Colors.white,
-                  fontSize: 16,
+                      ? Colors.white
+                      : Colors.white.withOpacity(0.6),
+                  fontSize: 14,
                 ),
               ),
             ),
@@ -853,9 +855,9 @@ class __FPanel2State extends State<_FPanel2> {
                 mapKey,
                 style: TextStyle(
                   color: resolution == resolutionItem.value
-                      ? Theme.of(context).primaryColor
-                      : Colors.white,
-                  fontSize: 16,
+                      ? Colors.white
+                      : Colors.white.withOpacity(0.6),
+                  fontSize: 14,
                 ),
               ),
             ),
@@ -882,17 +884,17 @@ class __FPanel2State extends State<_FPanel2> {
     Icon icon = player.value.fullScreen
         ? Icon(
             Icons.fullscreen_exit_rounded,
-            color: Theme.of(context).primaryColor,
+            color: Colors.white,
           )
         : Icon(
             Icons.fullscreen_rounded,
-            color: Theme.of(context).primaryColor,
+            color: Colors.white,
           );
     bool fullScreen = player.value.fullScreen;
     return IconButton(
       padding: EdgeInsets.zero,
-      iconSize: fullScreen ? height : height * 0.8,
-      color: Theme.of(context).primaryColorDark,
+      iconSize: fullScreen ? height * 0.8 : height * 0.8,
+      color: Colors.white,
       icon: icon,
       onPressed: () {
         player.value.fullScreen
@@ -910,7 +912,7 @@ class __FPanel2State extends State<_FPanel2> {
       text,
       style: TextStyle(
         fontSize: 12,
-        color: Theme.of(context).primaryColorDark,
+        color: Colors.white,
       ),
     );
   }
@@ -999,7 +1001,7 @@ class __FPanel2State extends State<_FPanel2> {
                     _duration2String(_currentPos),
                     style: TextStyle(
                       fontSize: 12,
-                      color: Theme.of(context).primaryColorDark,
+                      color: Colors.white,
                     ),
                   ),
                   Expanded(
@@ -1012,7 +1014,7 @@ class __FPanel2State extends State<_FPanel2> {
                     _duration2String(_duration),
                     style: TextStyle(
                       fontSize: 12,
-                      color: Theme.of(context).primaryColorDark,
+                      color: Colors.white,
                     ),
                   ),
                 ],
@@ -1136,14 +1138,14 @@ class __FPanel2State extends State<_FPanel2> {
                 child: Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: Theme.of(context).primaryColorLight,
+                    color: Colors.white,
                     borderRadius: const BorderRadius.all(
                       Radius.circular(5),
                     ),
                   ),
                   child: Icon(
                     Icons.camera_alt_rounded,
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -1164,18 +1166,18 @@ class __FPanel2State extends State<_FPanel2> {
               child: Container(
                 padding: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColorLight,
+                  color: Colors.transparent,
                   borderRadius: const BorderRadius.all(Radius.circular(5)),
                 ),
                 child: Visibility(
                   visible: lock,
                   replacement: Icon(
                     Icons.lock_open_rounded,
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.white,
                   ),
                   child: Icon(
                     Icons.lock_outline_rounded,
-                    color: Theme.of(context).primaryColor,
+                    color: Colors.white,
                   ),
                 ),
               ),
@@ -1345,7 +1347,7 @@ class __FPanel2State extends State<_FPanel2> {
               Duration(milliseconds: _seekPos.toInt()),
             )} / ${_duration2String(_duration)}",
             style: TextStyle(
-              color: Theme.of(context).primaryColorDark,
+              color: Colors.white,
               fontSize: 20,
             ),
           ),
@@ -1468,7 +1470,7 @@ class __FPanel2State extends State<_FPanel2> {
       padding: EdgeInsets.zero,
       icon: Icon(
         Icons.arrow_back_rounded,
-        color: Theme.of(context).primaryColor,
+        color: Colors.white,
       ),
       onPressed: () {
         player.value.fullScreen
@@ -1484,9 +1486,10 @@ class __FPanel2State extends State<_FPanel2> {
           ? widget.videoList![widget.videoIndex].title
           : widget.title,
       style: const TextStyle(
-        fontSize: 22,
-        color: Color(0xFF787878),
+        fontSize: 12.0,
+        color: Colors.white,
       ),
+      overflow: TextOverflow.ellipsis,
     );
   }
 
@@ -1512,7 +1515,7 @@ class __FPanel2State extends State<_FPanel2> {
       child: Text(
         '${DateTime.now().hour}:${DateTime.now().minute}',
         style: TextStyle(
-          color: Theme.of(context).primaryColor,
+          color: Colors.white,
           fontSize: 12,
         ),
       ),
@@ -1527,13 +1530,13 @@ class __FPanel2State extends State<_FPanel2> {
           Text(
             '$batteryLevel%',
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
               fontSize: 10,
             ),
           ),
           Icon(
             Icons.battery_charging_full_rounded,
-            color: Theme.of(context).primaryColor,
+            color: Colors.white,
           ),
         ],
       );
@@ -1543,44 +1546,44 @@ class __FPanel2State extends State<_FPanel2> {
           Text(
             '$batteryLevel%',
             style: TextStyle(
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
               fontSize: 10,
             ),
           ),
           if (batteryLevel < 14)
             Icon(
               Icons.battery_1_bar_rounded,
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
             )
           else if (batteryLevel < 28)
             Icon(
               Icons.battery_2_bar_rounded,
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
             )
           else if (batteryLevel < 42)
             Icon(
               Icons.battery_3_bar_rounded,
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
             )
           else if (batteryLevel < 56)
             Icon(
               Icons.battery_4_bar_rounded,
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
             )
           else if (batteryLevel < 70)
             Icon(
               Icons.battery_5_bar_rounded,
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
             )
           else if (batteryLevel < 84)
             Icon(
               Icons.battery_6_bar_rounded,
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
             )
           else
             Icon(
               Icons.battery_full_rounded,
-              color: Theme.of(context).primaryColor,
+              color: Colors.white,
             )
         ],
       );
@@ -1622,7 +1625,7 @@ class __FPanel2State extends State<_FPanel2> {
         alignment: Alignment.center,
         child: Icon(
           Icons.settings_rounded,
-          color: Theme.of(context).primaryColor,
+          color: Colors.white,
         ),
       ),
       onPressed: widget.settingFun,
@@ -1638,7 +1641,7 @@ class __FPanel2State extends State<_FPanel2> {
           height: 30,
           child: CircularProgressIndicator(
             valueColor: AlwaysStoppedAnimation(
-              Theme.of(context).primaryColorDark,
+              Colors.white,
             ),
           ),
         ),
@@ -1669,7 +1672,7 @@ class __FPanel2State extends State<_FPanel2> {
                   TextSpan(
                     text: "刷新",
                     style: TextStyle(
-                      color: Theme.of(context).primaryColor,
+                      color: Colors.white,
                     ),
                     recognizer: TapGestureRecognizer()
                       ..onTap = () {
