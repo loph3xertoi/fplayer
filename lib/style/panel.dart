@@ -248,7 +248,7 @@ class _DefaultFPanelState extends State<_DefaultFPanel> {
 //              color: Colors.transparent,
               onPressed: () {
                 widget.player.value.fullScreen
-                    ? player.exitFullScreen()
+                    ? player.exitFullScreen(context)
                     : player.enterFullScreen();
               },
             )

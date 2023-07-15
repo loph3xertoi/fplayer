@@ -344,9 +344,13 @@ class FPlayer extends ChangeNotifier implements ValueListenable<FValue> {
   }
 
   /// exit full screen mode, set [FValue.fullScreen] to false
-  void exitFullScreen() {
+  Future<void> exitFullScreen(BuildContext context) async {
     FLog.i("$this exitFullScreen");
     _setValue(value.copyWith(fullScreen: false));
+    Navigator.of(context).pop();
+    await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+        overlays: []);
+    await FPlugin.setOrientationPortrait();
   }
 
   /// change player's state to [FState.started]

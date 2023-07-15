@@ -200,6 +200,9 @@ class _FViewState extends State<FView> {
       } else if (_fullScreen && !value.fullScreen) {
         Navigator.of(context).pop();
         _fullScreen = false;
+        await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+            overlays: []);
+        await FPlugin.setOrientationPortrait();
       }
 
       // save width and height to make judgement about whether to
@@ -279,7 +282,7 @@ class _FViewState extends State<FView> {
 
     await Navigator.of(context).push(route);
     _fullScreen = false;
-    widget.player.exitFullScreen();
+    // widget.player.exitFullScreen();
     await SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
         overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     if (changed) {

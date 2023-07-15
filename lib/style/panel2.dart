@@ -898,7 +898,7 @@ class __FPanel2State extends State<_FPanel2> {
       icon: icon,
       onPressed: () {
         player.value.fullScreen
-            ? player.exitFullScreen()
+            ? player.exitFullScreen(context)
             : player.enterFullScreen();
       },
     );
@@ -1472,9 +1472,9 @@ class __FPanel2State extends State<_FPanel2> {
         Icons.arrow_back_rounded,
         color: Colors.white,
       ),
-      onPressed: () {
+      onPressed: () async {
         player.value.fullScreen
-            ? player.exitFullScreen()
+            ? await player.exitFullScreen(context)
             : Navigator.of(context).pop();
       },
     );
