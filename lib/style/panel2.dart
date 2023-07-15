@@ -1464,6 +1464,11 @@ class __FPanel2State extends State<_FPanel2> {
     }
   }
 
+  void _setValue(FValue newValue) {
+    if (player._value == newValue) return;
+    player._setValue(newValue);
+  }
+
   // 返回
   Widget buildBack(BuildContext context) {
     return IconButton(
@@ -1741,9 +1746,19 @@ class __FPanel2State extends State<_FPanel2> {
       ws.add(buildGestureDetector(context));
     }
 
-    return Positioned.fromRect(
-      rect: rect,
-      child: Stack(children: ws),
+    return WillPopScope(
+      onWillPop: () async {
+        _setValue(player._value.copyWith(fullScreen: false));
+        Navigator.of(context).pop();
+        await SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky,
+            overlays: []);
+        await FPlugin.setOrientationPortrait();
+        return true; // Allow the navigation to proceed
+      },
+      child: Positioned.fromRect(
+        rect: rect,
+        child: Stack(children: ws),
+      ),
     );
   }
 }
